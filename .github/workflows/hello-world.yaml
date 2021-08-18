@@ -29,6 +29,11 @@ jobs:
     container: gradle:6-jdk11
     needs: Clone-down
     steps:
+    - name: Download
+      uses: actions/download-artifact@v2
+      with:
+        name: Code
+        path: .
     - name: "Build App"
       run: |
             chmod +x ./ci/build-app.sh

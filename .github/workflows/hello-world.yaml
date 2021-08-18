@@ -18,7 +18,7 @@ jobs:
   Test:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
-    needs: Clone-down
+    needs: [Clone-down]
     steps:
     - name: Download Artifact
       uses: actions/download-artifact@v2
@@ -32,7 +32,7 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
-    needs: Clone-down
+    needs: [Clone-down]
     steps:
     - name: Download Artifact
       uses: actions/download-artifact@v2
@@ -63,5 +63,5 @@ jobs:
             ./ci/build-docker.sh
     - name: Push to Docker Hub
       run: |
-            chmod +x ./ci.push-docker.sh
-            ./ci.push-docker.sh
+            chmod +x ./ci/push-docker.sh
+            ./ci/push-docker.sh

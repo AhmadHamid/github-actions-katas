@@ -87,7 +87,7 @@ jobs:
   #       push: true
   #       tags: ahmadhamid/breadit:latest
   Component-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [Docker-image]
     steps:
     - name: Download Artifact

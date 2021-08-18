@@ -67,28 +67,28 @@ jobs:
             export GIT_COMMIT="GA-$GITHUB_SHA"
             chmod +x ./ci/push-docker.sh
             ./ci/push-docker.sh
-  Docker-image-action:
-    runs-on: ubuntu-latest
-    needs: [Test, Build]
-    steps:
-    - name: Download Artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: Code
-        path: .
-    - name: Login
-      uses: docker/login-action@v1
-      with:
-        username: ${{ env.docker_username }}
-        password: ${{ env.docker_password }}
-    - name: Build and Push
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: ahmadhamid/breadit:latest
+  # Docker-image-action:
+  #   runs-on: ubuntu-latest
+  #   needs: [Test, Build]
+  #   steps:
+  #   - name: Download Artifact
+  #     uses: actions/download-artifact@v2
+  #     with:
+  #       name: Code
+  #       path: .
+  #   - name: Login
+  #     uses: docker/login-action@v1
+  #     with:
+  #       username: ${{ env.docker_username }}
+  #       password: ${{ env.docker_password }}
+  #   - name: Build and Push
+  #     uses: docker/build-push-action@v2
+  #     with:
+  #       push: true
+  #       tags: ahmadhamid/breadit:latest
   Component-test:
     runs-on: ubuntu-latest
-    needs: [Docker-image, Docker-image-action]
+    needs: [Docker-image]
     steps:
     - name: Download Artifact
       uses: actions/download-artifact@v2
